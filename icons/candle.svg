@@ -1,0 +1,102 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <!-- Ambient Glow -->
+    <radialGradient id="glow" cx="50%" cy="50%" r="50%">
+      <stop offset="0%" stop-color="#FFA100" stop-opacity="0.45"/>
+      <stop offset="60%" stop-color="#FF5722" stop-opacity="0.15"/>
+      <stop offset="100%" stop-color="#FF5722" stop-opacity="0"/>
+    </radialGradient>
+
+    <!-- Flame Gradient Outer -->
+    <linearGradient id="flameOuter" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#FF3D00"/>
+      <stop offset="45%" stop-color="#FF9100"/>
+      <stop offset="85%" stop-color="#FFD600"/>
+      <stop offset="100%" stop-color="#FFF9C4"/>
+    </linearGradient>
+
+    <!-- Flame Gradient Inner -->
+    <linearGradient id="flameInner" x1="50%" y1="100%" x2="50%" y2="0%">
+      <stop offset="0%" stop-color="#FFA000"/>
+      <stop offset="50%" stop-color="#FFEE58"/>
+      <stop offset="100%" stop-color="#FFFFFF"/>
+    </linearGradient>
+
+    <!-- Candle Body Gradient -->
+    <linearGradient id="candleBody" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#E2E8F0"/>
+      <stop offset="25%" stop-color="#FFFFFF"/>
+      <stop offset="70%" stop-color="#F8FAFC"/>
+      <stop offset="100%" stop-color="#CBD5E1"/>
+    </linearGradient>
+
+    <!-- Candle Top / Wax Pool Gradient -->
+    <linearGradient id="candleTop" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#CBD5E1"/>
+      <stop offset="50%" stop-color="#F1F5F9"/>
+      <stop offset="100%" stop-color="#94A3B8"/>
+    </linearGradient>
+  </defs>
+
+  <!-- Ambient Flame Glow -->
+  <circle cx="64" cy="40" r="38" fill="url(#glow)"/>
+
+  <!-- Candle Pillar Body -->
+  <path d="M 38 72
+           C 38 72, 38 112, 38 115
+           C 38 119, 44 122, 64 122
+           C 84 122, 90 119, 90 115
+           C 90 112, 90 72, 90 72
+           Z"
+        fill="url(#candleBody)"
+        stroke="#64748B"
+        stroke-width="2.5"
+        stroke-linejoin="round"/>
+
+  <!-- Wax Drip Accent -->
+  <path d="M 44 75
+           C 44 86, 49 92, 51 92
+           C 53 92, 55 86, 55 75
+           Z"
+        fill="#FFFFFF"
+        opacity="0.9"/>
+
+  <!-- Candle Top Rim (Melted Wax Dish) -->
+  <ellipse cx="64" cy="72" rx="26" ry="7.5"
+           fill="url(#candleTop)"
+           stroke="#64748B"
+           stroke-width="2.5"/>
+
+  <!-- Depressed center for wick -->
+  <ellipse cx="64" cy="72.5" rx="14" ry="3.5"
+           fill="#94A3B8"
+           opacity="0.6"/>
+
+  <!-- Wick -->
+  <path d="M 64 73 C 63.5 68, 62 62, 64 56"
+        fill="none"
+        stroke="#1E293B"
+        stroke-width="3.5"
+        stroke-linecap="round"/>
+
+  <!-- Flame Outer -->
+  <path d="M 64 10
+           C 74 24, 84 36, 84 48
+           C 84 61, 75 68, 64 68
+           C 53 68, 44 61, 44 48
+           C 44 36, 54 24, 64 10
+           Z"
+        fill="url(#flameOuter)"/>
+
+  <!-- Flame Inner Core -->
+  <path d="M 64 26
+           C 70 34, 75 42, 75 50
+           C 75 58, 70 63, 64 63
+           C 58 63, 53 58, 53 50
+           C 53 42, 58 34, 64 26
+           Z"
+        fill="url(#flameInner)"/>
+
+  <!-- Hot spark highlight -->
+  <circle cx="64" cy="53" r="3.5" fill="#FFFFFF" opacity="0.9"/>
+</svg>

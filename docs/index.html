@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Privacy Policy - tabCandle</title>
+  <style>
+    :root {
+      --bg: #f8fafc;
+      --card-bg: #ffffff;
+      --text-main: #1e293b;
+      --text-muted: #64748b;
+      --primary: #f59e0b;
+      --border: #e2e8f0;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #0f172a;
+        --card-bg: #1e293b;
+        --text-main: #f8fafc;
+        --text-muted: #94a3b8;
+        --border: #334155;
+      }
+    }
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+      line-height: 1.7;
+      color: var(--text-main);
+      background-color: var(--bg);
+      margin: 0;
+      padding: 40px 20px;
+    }
+    .container {
+      max-width: 760px;
+      margin: 0 auto;
+      background: var(--card-bg);
+      padding: 48px;
+      border-radius: 16px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      border: 1px solid var(--border);
+    }
+    .header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 24px;
+      margin-bottom: 32px;
+    }
+    .header .icon {
+      font-size: 36px;
+    }
+    .header h1 {
+      margin: 0;
+      font-size: 28px;
+      font-weight: 700;
+    }
+    .date {
+      color: var(--text-muted);
+      font-size: 14px;
+      margin-top: 4px;
+    }
+    h2 {
+      font-size: 20px;
+      margin-top: 32px;
+      margin-bottom: 12px;
+      border-left: 4px solid var(--primary);
+      padding-left: 12px;
+    }
+    p, ul {
+      margin: 0 0 16px 0;
+    }
+    ul {
+      padding-left: 24px;
+    }
+    li {
+      margin-bottom: 8px;
+    }
+    .badge {
+      display: inline-block;
+      background: #ecfdf5;
+      color: #059669;
+      padding: 4px 12px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 16px;
+    }
+    footer {
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      padding-top: 20px;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <div class="header">
+      <div class="icon">🕯</div>
+      <div>
+        <h1>Privacy Policy for tabCandle</h1>
+        <div class="date">Last updated: September 19, 2026</div>
+      </div>
+    </div>
+
+    <div class="badge">✓ Zero Data Collection / 完全ローカル動作</div>
+
+    <p>
+      tabCandle ("the Extension") does not collect, store, transmit, or share any personal data, sensitive user information, or web browsing history.
+    </p>
+
+    <h2>1. Information Handling (データの取り扱い)</h2>
+    <ul>
+      <li><strong>No Data Collection:</strong> We do not track, log, or store any personal identifiers, browsing behavior, or page content.</li>
+      <li><strong>Local Processing Only:</strong> All operations (monitoring tab creation times, countdowns, and closing unpinned tabs) are executed entirely on your local device.</li>
+      <li><strong>No External Transmission:</strong> No data is ever transmitted to external servers, cloud storage, third parties, or analytics platforms.</li>
+    </ul>
+
+    <h2>2. Permissions Used (使用している権限)</h2>
+    <p>tabCandle requests only the minimum necessary permissions to fulfill its single core purpose:</p>
+    <ul>
+      <li><code>tabs</code>: Required to inspect tab open timestamps, check pinned / audio playing status, and close inactive tabs after 240 minutes. Tab URLs or browsing history are never collected or stored.</li>
+      <li><code>storage</code>: Required solely to save tab timestamps locally across service worker lifecycles. No sensitive information is stored.</li>
+      <li><code>alarms</code>: Required to periodically run background sweep checks to automatically close expired tabs.</li>
+    </ul>
+
+    <h2>3. Third-Party Services (サードパーティサービス)</h2>
+    <p>The Extension contains no third-party tracking, advertising, analytics SDKs, or external network requests.</p>
+
+    <h2>4. Changes to This Policy (本ポリシーの変更)</h2>
+    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date.</p>
+
+    <h2>5. Contact (お問い合わせ)</h2>
+    <p>If you have any questions regarding this Privacy Policy, please open an issue on the official GitHub repository.</p>
+
+    <footer>
+      tabCandle — A minimal, privacy-focused tab management extension.
+    </footer>
+  </div>
+</body>
+</html>
