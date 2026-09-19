@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "tabCandle",
-  "version": "2.3.0",
+  "version": "2.3.1",
   "description": "固定タブ以外の開きっぱなしタブを、240分経過後に自動クローズするシンプルなChrome拡張機能",
   "permissions": [
     "tabs",

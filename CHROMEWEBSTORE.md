@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — tabCandle
 
 > Last Updated: 2026-09-19  
-> Target Version: 2.3.0
+> Target Version: 2.3.1
 
 このドキュメントは、Chrome Web Store デベロッパーダッシュボードへの登録・審査申請に必要なすべての掲載情報、権限正当化理由（Permissions Justification）、プライバシー開示、およびパッケージング手順をまとめたリファレンスです。
 
@@ -193,14 +193,13 @@ If you have any questions or feedback regarding this privacy policy, please cont
 
 Chrome Web Store にアップロードする ZIP ファイルには、`.git` フォルダや隠しファイルを含めないようにします。
 
-以下のターミナルコマンドを実行することで、提出用パッケージ（`tabcandle-v2.3.0.zip`）を作成できます：
+以下のターミナルコマンドを実行することで、提出用パッケージ（`tabcandle-v2.3.1.zip`）を作成できます：
 
 ```bash
-cd /Users/teacola/works/chrome-extension/tabcandle
-zip -r ../tabcandle-v2.3.0.zip . -x "*.git*" -x "*.DS_Store" -x "CHROMEWEBSTORE.md"
+zip -r tabcandle-v2.3.1.zip manifest.json background.js popup icons README.md -x "*.DS_Store"
 ```
 
-生成された `tabcandle-v2.3.0.zip` をデベロッパーダッシュボードの **「パッケージ」** 画面にアップロードすれば完了です！
+生成された `tabcandle-v2.3.1.zip` をデベロッパーダッシュボードの **「パッケージ」** 画面にアップロードすれば完了です！
 
 ---
 
@@ -208,4 +207,5 @@ zip -r ../tabcandle-v2.3.0.zip . -x "*.git*" -x "*.DS_Store" -x "CHROMEWEBSTORE.
 
 | バージョン | 日付 | 主な変更内容 | 状況 |
 | :--- | :--- | :--- | :---: |
-| **v2.3.0** | 2026-09-19 | ・赤色警告グループの廃止と純粋な240分自動終了への最適化<br>・`tabGroups` 権限の完全削除<br>・各タブカウントダウンバッジへの蝋燭アイコン（🕯）追加<br>・Webセーフカラー（216色）統一とUIの超軽量化（約14KB） | 申請準備完了 (Ready) |
+| **v2.3.1** | 2026-09-20 | ・ブランドテーマカラーを「青」「グレー」「オレンジ」のWebセーフカラー（216色）に完全統一<br>・通常時および警告時のカウントダウンバッジ配色をキャンドルカラーへ最適化<br>・READMEおよびストア情報の更新 | 申請準備完了 (Ready) |
+| **v2.3.0** | 2026-09-19 | ・赤色警告グループの廃止と純粋な240分自動終了への最適化<br>・`tabGroups` 権限の完全削除<br>・各タブカウントダウンバッジへの蝋燭アイコン（🕯）追加<br>・Webセーフカラー（216色）統一とUIの超軽量化（約14KB） | 完了 |
