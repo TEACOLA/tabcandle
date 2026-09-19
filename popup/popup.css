@@ -1,18 +1,26 @@
 /* tabCandle - Popup Stylesheet (Web-Safe Color Palette & Responsive Token System) */
 
 :root {
-  /* Web-Safe Colors (Strict 216-color palette: 00, 33, 66, 99, cc, ff) */
-  --bg-primary: #000033;       /* 深いダークネイビー */
-  --bg-card: #003366;          /* ネイビーカード背景 */
+  /* Theme Colors: Blue, Gray, Orange (Strict Web-Safe 216-color palette) */
+  /* 1. 🔵 青 (Blue / Navy) - ベース・背景・構造 */
+  --bg-primary: #000033;       /* 深いダークネイビー (全体背景) */
+  --bg-card: #003366;          /* ネイビー (カード・リスト背景) */
   --bg-card-hover: #003399;    /* ホバー時のカード色 */
-  --bg-input: #003366;         /* 入力欄背景 */
-  --border-color: #336699;     /* 枠線色 */
-  --border-focus: #0099ff;     /* フォーカス時のハイライト */
-  --text-primary: #ffffff;     /* 主要テキスト (純白) */
+  --accent-blue: #0099ff;      /* シアンブルー (フォーカス・アクティブ枠線) */
+
+  /* 2. ⚪ グレー (Gray) - テキスト・境界線・固定保護バッジ */
+  --text-primary: #ffffff;     /* 主要テキスト (白) */
   --text-secondary: #cccccc;   /* サブテキスト (ライトグレー) */
   --text-muted: #999999;       /* 控えめなテキスト (ミディアムグレー) */
-  --accent-primary: #0099ff;   /* プライマリアクセント (鮮やかなシアンブルー) */
-  --accent-secondary: #3366ff; /* セカンダリアクセント (インディゴブルー) */
+  --border-color: #336699;     /* 枠線色 (ブルーグレー) */
+  --badge-pinned-bg: rgba(153, 153, 153, 0.15); /* 保護バッジ背景 */
+  --badge-pinned-border: rgba(153, 153, 153, 0.3);
+
+  /* 3. 🟠 オレンジ (Orange) - キャンドルの炎・アクセント・カウントダウン */
+  --accent-orange: #ff9900;      /* キャンドルオレンジ (通常タイマー・ロゴ) */
+  --accent-orange-deep: #ff6600; /* ディープオレンジ (終了間近アラート) */
+  --accent-orange-bg: rgba(255, 153, 0, 0.12);
+  --accent-orange-border: rgba(255, 153, 0, 0.35);
 
   /* Typography Scale */
   font-size: 15px;
@@ -71,8 +79,8 @@ body {
   width: 32px;
   height: 32px;
   border-radius: var(--radius-md);
-  background: linear-gradient(135deg, rgba(255, 102, 0, 0.25), rgba(255, 0, 51, 0.15));
-  border: 1px solid rgba(255, 102, 0, 0.4);
+  background: linear-gradient(135deg, rgba(255, 153, 0, 0.25), rgba(255, 102, 0, 0.18));
+  border: 1px solid var(--accent-orange-border);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -104,9 +112,9 @@ body {
   font-weight: 600;
   padding: 1px 6px;
   border-radius: var(--radius-full);
-  background: rgba(255, 204, 0, 0.18);
-  color: #ffcc00;
-  border: 1px solid rgba(255, 204, 0, 0.4);
+  background: var(--accent-orange-bg);
+  color: var(--accent-orange);
+  border: 1px solid var(--accent-orange-border);
 }
 
 /* Countdown Section */
@@ -223,22 +231,22 @@ body {
 }
 
 .countdown-badge.time-safe {
-  color: #00ff99;
-  background: rgba(0, 255, 153, 0.12);
-  border: 1px solid rgba(0, 255, 153, 0.35);
+  color: var(--accent-orange);
+  background: var(--accent-orange-bg);
+  border: 1px solid var(--accent-orange-border);
 }
 
 .countdown-badge.time-caution {
-  color: #ffcc00;
-  background: rgba(255, 204, 0, 0.12);
-  border: 1px solid rgba(255, 204, 0, 0.35);
+  color: var(--accent-orange-deep);
+  background: rgba(255, 102, 0, 0.15);
+  border: 1px solid rgba(255, 102, 0, 0.45);
 }
 
 .countdown-badge.time-pinned {
   min-width: 30px;
-  color: #cccccc;
-  background: rgba(153, 153, 153, 0.15);
-  border: 1px solid rgba(153, 153, 153, 0.3);
+  color: var(--text-secondary);
+  background: var(--badge-pinned-bg);
+  border: 1px solid var(--badge-pinned-border);
   font-weight: 500;
   font-size: var(--font-sm);
   padding: 2.5px 6px;
