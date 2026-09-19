@@ -1,26 +1,26 @@
 /* tabCandle - Popup Stylesheet (Web-Safe Color Palette & Responsive Token System) */
 
 :root {
-  /* Theme Colors: Blue, Gray, Orange (Strict Web-Safe 216-color palette) */
-  /* 1. 🔵 青 (Blue / Navy) - ベース・背景・構造 */
-  --bg-primary: #000033;       /* 深いダークネイビー (全体背景) */
-  --bg-card: #003366;          /* ネイビー (カード・リスト背景) */
-  --bg-card-hover: #003399;    /* ホバー時のカード色 */
-  --accent-blue: #0099ff;      /* シアンブルー (フォーカス・アクティブ枠線) */
+  /* Theme Colors: Black, Gray, Orange (Strict Web-Safe 216-color palette) */
+  /* 1. ⚫ 黒 (Black) - ベース・全体背景 */
+  --bg-primary: #000000;       /* ピュアブラック (全体背景) */
 
-  /* 2. ⚪ グレー (Gray) - テキスト・境界線・固定保護バッジ */
+  /* 2. ⚪ グレー (Gray) - カード背景・枠線・テキスト・保護バッジ */
+  --bg-card: #333333;          /* ダークチャコールグレー (カード・リスト背景) */
+  --bg-card-hover: #444444;    /* ホバー時のカード色 */
+  --border-color: #666666;     /* 枠線色 (ミディアムグレー) */
+  --border-subtle: #444444;    /* リスト区切り線 */
   --text-primary: #ffffff;     /* 主要テキスト (白) */
   --text-secondary: #cccccc;   /* サブテキスト (ライトグレー) */
   --text-muted: #999999;       /* 控えめなテキスト (ミディアムグレー) */
-  --border-color: #336699;     /* 枠線色 (ブルーグレー) */
-  --badge-pinned-bg: rgba(153, 153, 153, 0.15); /* 保護バッジ背景 */
-  --badge-pinned-border: rgba(153, 153, 153, 0.3);
+  --badge-pinned-bg: rgba(153, 153, 153, 0.2); /* 保護バッジ背景 */
+  --badge-pinned-border: rgba(153, 153, 153, 0.4);
 
   /* 3. 🟠 オレンジ (Orange) - キャンドルの炎・アクセント・カウントダウン */
   --accent-orange: #ff9900;      /* キャンドルオレンジ (通常タイマー・ロゴ) */
   --accent-orange-deep: #ff6600; /* ディープオレンジ (終了間近アラート) */
-  --accent-orange-bg: rgba(255, 153, 0, 0.12);
-  --accent-orange-border: rgba(255, 153, 0, 0.35);
+  --accent-orange-bg: rgba(255, 153, 0, 0.15);
+  --accent-orange-border: rgba(255, 153, 0, 0.4);
 
   /* Typography Scale */
   font-size: 15px;
@@ -192,7 +192,7 @@ body {
   height: 15px;
   border-radius: 2px;
   flex-shrink: 0;
-  background: #336699;
+  background: #666666;
   display: flex;
   align-items: center;
   justify-content: center;
