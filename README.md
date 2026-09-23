@@ -1,5 +1,10 @@
 # tabCandle - Chrome タブ自動クローズ拡張機能
 
+[![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-tabCandle-orange?logo=googlechrome)](https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac)
+[![GitHub Pages](https://img.shields.io/badge/Privacy_Policy-GitHub_Pages-blue)](https://teacola.github.io/tabcandle/)
+
+> 🛒 **Chrome ウェブストア公式ページ**: [https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac](https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac)
+
 固定（ピン留め）されていない開きっぱなしのタブを、**240分（4時間）経過後にバックグラウンドで静かに自動クローズ**する軽量なChrome拡張機能（Manifest V3対応）です。
 
 ---
