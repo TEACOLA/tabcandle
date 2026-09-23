@@ -1,26 +1,20 @@
 <!DOCTYPE html>
-<html lang="ja">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Privacy Policy - tabCandle</title>
+  <title>tabCandle - Privacy Policy & Official Store</title>
+  <meta name="description" content="tabCandle automatically closes unpinned tabs after 240 minutes in Chrome. 100% private, local processing, and zero data collection.">
   <style>
     :root {
-      --bg: #f8fafc;
-      --card-bg: #ffffff;
-      --text-main: #1e293b;
-      --text-muted: #64748b;
-      --primary: #f59e0b;
-      --border: #e2e8f0;
-    }
-    @media (prefers-color-scheme: dark) {
-      :root {
-        --bg: #0f172a;
-        --card-bg: #1e293b;
-        --text-main: #f8fafc;
-        --text-muted: #94a3b8;
-        --border: #334155;
-      }
+      --bg: #000000;
+      --card-bg: #141414;
+      --card-border: #2a2a2a;
+      --text-main: #f5f5f5;
+      --text-muted: #999999;
+      --primary: #ff9900;
+      --primary-hover: #ffaa22;
+      --border: #333333;
     }
     body {
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
@@ -31,119 +25,187 @@
       padding: 40px 20px;
     }
     .container {
-      max-width: 760px;
+      max-width: 780px;
       margin: 0 auto;
       background: var(--card-bg);
       padding: 48px;
       border-radius: 16px;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
-      border: 1px solid var(--border);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+      border: 1px solid var(--card-border);
     }
     .header {
       display: flex;
       align-items: center;
       gap: 16px;
-      border-bottom: 2px solid var(--border);
+      border-bottom: 1px solid var(--border);
       padding-bottom: 24px;
-      margin-bottom: 32px;
+      margin-bottom: 28px;
     }
     .header .icon {
-      font-size: 36px;
+      font-size: 42px;
+      filter: drop-shadow(0 2px 8px rgba(255, 153, 0, 0.4));
     }
     .header h1 {
       margin: 0;
-      font-size: 28px;
-      font-weight: 700;
+      font-size: 30px;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: #ffffff;
     }
     .date {
       color: var(--text-muted);
       font-size: 14px;
       margin-top: 4px;
     }
+    .hero-banner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      background: linear-gradient(135deg, rgba(255, 153, 0, 0.12), rgba(255, 102, 0, 0.04));
+      border: 1px solid rgba(255, 153, 0, 0.35);
+      border-radius: 14px;
+      padding: 22px 24px;
+      margin-bottom: 36px;
+    }
+    .hero-text {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    .hero-title {
+      font-size: 18px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+    .hero-sub {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .store-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      background-color: var(--primary);
+      color: #000000;
+      text-decoration: none;
+      font-size: 15px;
+      font-weight: 700;
+      padding: 12px 22px;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: all 0.2s ease;
+      box-shadow: 0 4px 14px rgba(255, 153, 0, 0.35);
+    }
+    .store-btn:hover {
+      background-color: var(--primary-hover);
+      transform: translateY(-2px);
+      box-shadow: 0 6px 20px rgba(255, 153, 0, 0.5);
+    }
+    .store-btn svg {
+      width: 20px;
+      height: 20px;
+    }
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 16px;
+      margin: 28px 0 36px 0;
+    }
+    .feature-card {
+      background: #1c1c1c;
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 16px 18px;
+    }
+    .feature-card .f-icon {
+      font-size: 20px;
+      margin-bottom: 6px;
+    }
+    .feature-card .f-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      margin-bottom: 4px;
+    }
+    .feature-card .f-desc {
+      font-size: 12.5px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      background: rgba(16, 185, 129, 0.12);
+      color: #34d399;
+      border: 1px solid rgba(16, 185, 129, 0.25);
+      padding: 5px 14px;
+      border-radius: 9999px;
+      font-size: 13px;
+      font-weight: 600;
+      margin-bottom: 20px;
+    }
     h2 {
       font-size: 20px;
-      margin-top: 32px;
+      margin-top: 36px;
       margin-bottom: 12px;
+      color: #ffffff;
       border-left: 4px solid var(--primary);
       padding-left: 12px;
     }
     p, ul {
       margin: 0 0 16px 0;
+      color: #d1d5db;
     }
     ul {
-      padding-left: 24px;
+      padding-left: 22px;
     }
     li {
       margin-bottom: 8px;
     }
-    .badge {
-      display: inline-block;
-      background: #ecfdf5;
-      color: #059669;
-      padding: 4px 12px;
-      border-radius: 9999px;
+    code {
+      background: #262626;
+      color: var(--primary);
+      padding: 2px 6px;
+      border-radius: 4px;
       font-size: 13px;
-      font-weight: 600;
-      margin-bottom: 16px;
     }
-    .store-banner {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 16px;
-      background: linear-gradient(135deg, rgba(245, 158, 11, 0.08), rgba(255, 102, 0, 0.05));
-      border: 1px solid rgba(245, 158, 11, 0.3);
-      border-radius: 12px;
-      padding: 16px 20px;
-      margin-bottom: 28px;
-    }
-    .store-banner-text {
+    footer {
+      margin-top: 52px;
+      border-top: 1px solid var(--border);
+      padding-top: 24px;
+      color: var(--text-muted);
+      font-size: 13px;
+      text-align: center;
       display: flex;
       flex-direction: column;
-      gap: 2px;
-    }
-    .store-banner-title {
-      font-size: 15px;
-      font-weight: 700;
-      color: var(--text-main);
-    }
-    .store-banner-sub {
-      font-size: 13px;
-      color: var(--text-muted);
-    }
-    .store-btn {
-      display: inline-flex;
+      gap: 10px;
       align-items: center;
-      gap: 8px;
-      background-color: #ff9900;
-      color: #000000;
-      text-decoration: none;
-      font-size: 14px;
-      font-weight: 700;
-      padding: 10px 18px;
-      border-radius: 8px;
-      white-space: nowrap;
-      transition: all 0.2s ease;
-      box-shadow: 0 2px 8px rgba(255, 153, 0, 0.3);
     }
-    .store-btn:hover {
-      background-color: #ffaa22;
-      transform: translateY(-1px);
-      box-shadow: 0 4px 12px rgba(255, 153, 0, 0.4);
+    .footer-links {
+      display: flex;
+      gap: 18px;
     }
-    .footer-link {
+    .footer-links a {
       color: var(--primary);
-      text-decoration: underline;
-      display: inline-block;
-      margin-top: 8px;
+      text-decoration: none;
+      font-weight: 500;
     }
-    @media (max-width: 600px) {
-      .store-banner {
+    .footer-links a:hover {
+      text-decoration: underline;
+    }
+    @media (max-width: 640px) {
+      .container {
+        padding: 28px 20px;
+      }
+      .hero-banner {
         flex-direction: column;
-        align-items: flex-start;
+        align-items: stretch;
+        text-align: center;
       }
       .store-btn {
-        width: 100%;
         justify-content: center;
       }
     }
@@ -151,60 +213,80 @@
 </head>
 <body>
   <div class="container">
-    <div class="header">
+    <header class="header">
       <div class="icon">🕯</div>
       <div>
-        <h1>Privacy Policy for tabCandle</h1>
-        <div class="date">Last updated: September 19, 2026</div>
+        <h1>tabCandle</h1>
+        <div class="date">Privacy Policy & Official Store — Last updated: September 23, 2026</div>
       </div>
-    </div>
+    </header>
 
-    <div class="store-banner">
-      <div class="store-banner-text">
-        <div class="store-banner-title">Chrome ウェブストア公式ページ</div>
-        <div class="store-banner-sub">未固定タブを240分で自動クローズする軽量タブ整理拡張機能</div>
+    <div class="hero-banner">
+      <div class="hero-text">
+        <div class="hero-title">Free up your browser memory automatically</div>
+        <div class="hero-sub">Closes unpinned tabs left open for more than 4 hours (240 minutes) in the background. Clean, lightweight, and safe.</div>
       </div>
       <a href="https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac" target="_blank" rel="noopener noreferrer" class="store-btn">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
-        Chrome に追加
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="4"/><line x1="21.17" y1="8" x2="12" y2="8"/><line x1="3.95" y1="6.06" x2="8.54" y2="14"/><line x1="10.88" y1="21.94" x2="15.46" y2="14"/></svg>
+        Add to Chrome — Free
       </a>
     </div>
 
-    <div class="badge">✓ Zero Data Collection / 完全ローカル動作</div>
+    <div class="features-grid">
+      <div class="feature-card">
+        <div class="f-icon">⏰</div>
+        <div class="f-title">240-Min Auto Close</div>
+        <div class="f-desc">Unused tabs close automatically after 4 hours to stop memory bloat.</div>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">📌</div>
+        <div class="f-title">Pinned Tab Protection</div>
+        <div class="f-desc">Any tab you pin is strictly protected and will never be closed.</div>
+      </div>
+      <div class="feature-card">
+        <div class="f-icon">🔊</div>
+        <div class="f-title">Audio / Media Safe</div>
+        <div class="f-desc">Never interrupts YouTube, Spotify, or conference calls while playing.</div>
+      </div>
+    </div>
+
+    <div class="badge">✓ 100% Local & Zero Data Collection</div>
 
     <p>
-      tabCandle ("the Extension") does not collect, store, transmit, or share any personal data, sensitive user information, or web browsing history.
+      tabCandle ("the Extension") is committed to protecting your privacy. The Extension does not collect, store, transmit, or share any personal data, sensitive user information, or web browsing history.
     </p>
 
-    <h2>1. Information Handling (データの取り扱い)</h2>
+    <h2>1. Information Handling</h2>
     <ul>
-      <li><strong>No Data Collection:</strong> We do not track, log, or store any personal identifiers, browsing behavior, or page content.</li>
-      <li><strong>Local Processing Only:</strong> All operations (monitoring tab creation times, countdowns, and closing unpinned tabs) are executed entirely on your local device.</li>
-      <li><strong>No External Transmission:</strong> No data is ever transmitted to external servers, cloud storage, third parties, or analytics platforms.</li>
+      <li><strong>No Data Collection:</strong> We do not collect, track, log, or sell any personal identifiers, search history, browsing behavior, or page content.</li>
+      <li><strong>100% Local Processing:</strong> All operations (recording tab opening timestamps, calculating countdowns, and closing unpinned tabs) are executed entirely on your local machine.</li>
+      <li><strong>No External Network Requests:</strong> The Extension does not communicate with external servers, cloud databases, third parties, or analytics SDKs.</li>
     </ul>
 
-    <h2>2. Permissions Used (使用している権限)</h2>
-    <p>tabCandle requests only the minimum necessary permissions to fulfill its single core purpose:</p>
+    <h2>2. Permissions Justification</h2>
+    <p>tabCandle requests only the minimum necessary Chrome permissions to fulfill its single core purpose:</p>
     <ul>
-      <li><code>tabs</code>: Required to inspect tab open timestamps, check pinned / audio playing status, and close inactive tabs after 240 minutes. Tab URLs or browsing history are never collected or stored.</li>
-      <li><code>storage</code>: Required solely to save tab timestamps locally across service worker lifecycles. No sensitive information is stored.</li>
-      <li><code>alarms</code>: Required to periodically run background sweep checks to automatically close expired tabs.</li>
+      <li><code>tabs</code>: Required to detect tab creation timestamps, check pinned / audio playback states for protection, switch to clicked tabs from the popup, and automatically close expired tabs after 240 minutes. Tab URLs or page contents are never tracked or saved.</li>
+      <li><code>storage</code>: Required solely to save tab timestamps locally on your machine across service worker lifecycles. No personal or browsing information is stored.</li>
+      <li><code>alarms</code>: Required to periodically schedule background sweep checks to automatically close expired tabs without keeping background processes running continuously.</li>
     </ul>
 
-    <h2>3. Third-Party Services (サードパーティサービス)</h2>
-    <p>The Extension contains no third-party tracking, advertising, analytics SDKs, or external network requests.</p>
+    <h2>3. Third-Party Services & Remote Code</h2>
+    <p>The Extension contains zero third-party trackers, analytics libraries, ads, or remotely hosted code. Everything is packaged locally within the extension.</p>
 
-    <h2>4. Changes to This Policy (本ポリシーの変更)</h2>
-    <p>We may update this Privacy Policy from time to time. Any changes will be posted on this page with an updated date.</p>
+    <h2>4. Changes to This Policy</h2>
+    <p>We may update this Privacy Policy as needed to reflect improvements or regulatory requirements. Any updates will be published immediately on this page with a revised date.</p>
 
-    <h2>5. Contact (お問い合わせ)</h2>
-    <p>If you have any questions regarding this Privacy Policy, please open an issue on the official GitHub repository.</p>
+    <h2>5. Contact & Support</h2>
+    <p>If you have any questions or feedback regarding tabCandle or this Privacy Policy, please open an issue or inquiry on our official GitHub repository.</p>
 
     <footer>
-      tabCandle — A minimal, privacy-focused tab management extension.<br>
-      <a href="https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac" target="_blank" rel="noopener noreferrer" class="footer-link">
-        Chrome ウェブストア公式ページで見る
-      </a>
+      <div>tabCandle — A minimal, privacy-focused tab management extension for Google Chrome.</div>
+      <div class="footer-links">
+        <a href="https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac" target="_blank" rel="noopener noreferrer">Chrome Web Store</a>
+        <span>•</span>
+        <a href="https://github.com/TEACOLA/tabcandle" target="_blank" rel="noopener noreferrer">GitHub Repository</a>
+      </div>
     </footer>
   </div>
 </body>

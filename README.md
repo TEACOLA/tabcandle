@@ -1,69 +1,102 @@
-# tabCandle - Chrome タブ自動クローズ拡張機能
+# tabCandle — Chrome Tab Auto-Close Extension
 
 [![Chrome Web Store](https://img.shields.io/badge/Chrome_Web_Store-tabCandle-orange?logo=googlechrome)](https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac)
 [![GitHub Pages](https://img.shields.io/badge/Privacy_Policy-GitHub_Pages-blue)](https://teacola.github.io/tabcandle/)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Manifest V3](https://img.shields.io/badge/Manifest-V3-success.svg)](https://developer.chrome.com/docs/extensions/mv3/intro/)
 
-> 🛒 **Chrome ウェブストア公式ページ**: [https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac](https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac)
+> 🕯 **Let your inactive tabs burn down gracefully.**  
+> Automatically closes unpinned tabs after 240 minutes (4 hours) in the background. Clean, lightweight, and memory-friendly.
 
-固定（ピン留め）されていない開きっぱなしのタブを、**240分（4時間）経過後にバックグラウンドで静かに自動クローズ**する軽量なChrome拡張機能（Manifest V3対応）です。
-
----
-
-## 主な機能
-
-### 1. ⏰ 未固定タブの自動クローズ（メモリ＆画面の自動整理）
-- 「調べ物などでタブを開きすぎてブラウザが重くなる」を防ぐため、**固定（Pinned）されていないタブを開いてから240分（4時間）経過後に自動終了**します。
-- **安心の2大保護ガード**:
-  1. 📌 **固定タブ（Pinned Tabs）の完全保護**: ピン留めされた固定タブは絶対に終了しません。残したいタブは右クリックして「タブを固定」すれば安全に保護されます。
-  2. 🔊 **音声再生中（動画・音楽・通話）タブの保護**: YouTubeやSpotify、Google Meet等の音声・動画再生中のタブは再生停止まで自動終了しません。
-- **既存タブの個別タイマー維持**: すべてのタブが個別の正確な終了予定時間を保持して独立して動作します。
-
-### 2. 🕯 カウントダウンに特化したミニマルUI
-- **ポップアップ画面**: 開いているタブとクローズまでの残り時間を蝋燭アイコン（🕯）付きで一覧表示。
-- **タブジャンプ**: リスト内のタブをクリックするだけで、そのタブへ瞬時に切り替えられます。
-- 🎨 **Webセーフカラー対応（3色パレット）**: 全配色を「黒」「グレー」「オレンジ」のWebセーフカラー（216色）で統一。漆黒の背景にキャンドルの温かなオレンジの灯りが際立つ、シックで洗練されたデザインです。
+🛒 **Official Store Page**: [Install tabCandle from Chrome Web Store](https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac)
 
 ---
 
-## インストール手順（Chromeへの読み込み・更新）
+## Key Features
 
-### すでに読み込み済みの場合（最新版へのアップデート）
-1. Chromeで `chrome://extensions` を開きます。
-2. 「tabCandle」カードの右下にある **更新アイコン（ぐるぐる回る矢印）** をクリックするだけで最新版（v2.3.1）が反映されます。
+### 1. ⏰ Automatic 240-Minute Tab Cleanup
+- Prevents browser slowdown and memory hoarding by automatically closing unpinned tabs left open for 240 minutes (4 hours).
+- **Two Built-in Protection Guards**:
+  1. 📌 **Pinned Tab Protection**: Any tab you pin is strictly protected and will **never** be closed automatically.
+  2. 🔊 **Active Media Protection**: Tabs playing audio or video (YouTube, Spotify, Google Meet, Zoom, podcasts) are protected until playback ends.
+- **Independent Tab Timers**: Every tab tracks its own lifecycle based on when it was opened.
 
-### 初めてインストールする場合
-1. Chromeで `chrome://extensions` を開きます。
-2. 右上の **「デベロッパーモード」** をONにします。
-3. 左上の **「パッケージ化されていない拡張機能を読み込む」** を押し、本フォルダ（`tabcandle`）を選択します。
-4. ツールバーのパズルピースアイコンからピン留めします。
+### 2. 🕯 Minimalist Candle Countdown Popup
+- **Live Countdown List**: Click the toolbar icon to view all active tabs with remaining time indicators and candle icons (🕯).
+- **Instant Tab Switching**: Click any tab in the list to jump straight to it.
+- 🎨 **Web-Safe 3-Color Design**: Tailored with an elegant Black, Gray, and Orange palette (strict 216-color Web-Safe standard). High contrast, dark mode native.
+
+### 3. 🔒 100% Private & Local
+- **Zero Data Collection**: No browsing history, no URLs, no personal data tracked or stored.
+- **Zero External Network Requests**: Operates 100% locally on your machine with no third-party SDKs, ads, or analytics.
 
 ---
 
-## ファイル構成
+## Installation
+
+### Option A: Install from Chrome Web Store (Recommended)
+👉 [Click here to install tabCandle on the Chrome Web Store](https://chromewebstore.google.com/detail/tabcandle/eghieefcaocdlamkpefmemmbepdgkdac)
+
+### Option B: Load Unpacked (Development)
+1. Clone this repository:
+   ```bash
+   git clone https://github.com/TEACOLA/tabcandle.git
+   ```
+2. Open Google Chrome and navigate to `chrome://extensions/`.
+3. Enable **"Developer mode"** in the top-right corner.
+4. Click **"Load unpacked"** and select the `tabcandle` folder.
+5. Pin `tabCandle` from the Extensions puzzle icon in the toolbar.
+
+---
+
+## File Structure
 
 ```
 tabcandle/
-├── manifest.json         # Chrome拡張機能の設定ファイル (Manifest V3, alarms/storage/tabs)
-├── background.js         # バックグラウンドService Worker（自動クローズ・アラーム管理）
-├── icons/                # 蝋燭アイコン画像 (16px, 32px, 48px, 128px, SVG)
+├── manifest.json         # Manifest V3 extension configuration
+├── background.js         # Service worker (tab timer tracking & alarms sweep)
+├── icons/                # Extension icons (16px, 32px, 48px, 128px, SVG)
 │   ├── icon16.png
 │   ├── icon32.png
 │   ├── icon48.png
 │   ├── icon128.png
 │   └── candle.svg
 ├── popup/
-│   ├── popup.html        # ポップアップ画面のUI構造
-│   ├── popup.css         # スタイリング（Webセーフカラー・レスポンシブトークン）
-│   └── popup.js          # カウントダウン表示・タブジャンプ
-└── README.md             # 本ドキュメント
+│   ├── popup.html        # Popup interface
+│   ├── popup.css         # Styling (Web-Safe black/gray/orange theme)
+│   └── popup.js          # Countdown renderer & tab switching
+├── docs/
+│   └── index.html        # GitHub Pages landing & privacy policy
+├── CHROMEWEBSTORE.md     # Store listing references & justifications
+└── README.md             # Documentation
 ```
 
 ---
 
-## セキュリティ・プライバシー
+## Permissions
 
-- **完全ローカル動作**: 外部サーバーへの通信、トラッキング、データ収集は一切行いません。
-- **必要最小限の権限（tabGroups権限不要）**:
-  - `tabs`: タブの開設時刻管理・クローズ処理
-  - `storage`: タイマー情報のローカル保存
-  - `alarms`: バックグラウンドでの定期タブ生存チェック
+| Permission | Purpose |
+| :--- | :--- |
+| `tabs` | Used to inspect tab creation timestamps, check pinned / audio playing states, and close inactive tabs after 240 minutes. |
+| `storage` | Used solely to save tab timestamps locally across service worker lifecycles. |
+| `alarms` | Used to schedule background sweep checks without keeping processes awake continuously. |
+
+---
+
+<details>
+<summary>🇯🇵 日本語での説明 (Japanese Description)</summary>
+
+### tabCandle - Chrome タブ自動クローズ拡張機能
+固定（ピン留め）されていない開きっぱなしのタブを、**240分（4時間）経過後にバックグラウンドで静かに自動クローズ**する軽量なChrome拡張機能です。
+
+- **安心の2大保護ガード**: ピン留めされた固定タブ、および音声・動画再生中のタブは絶対に自動クローズされません。
+- **ミニマルUI**: 蝋燭アイコン（🕯）付きの残り時間リストから、クリック1つで目的のタブへジャンプ可能。
+- **3色パレット**: 「黒」「グレー」「オレンジ」のWebセーフカラーで統一されたシックなデザイン。
+- **完全ローカル動作**: 外部通信なし・個人データ収集ゼロ。
+
+</details>
+
+---
+
+## License
+MIT License. Open source and privacy first.
