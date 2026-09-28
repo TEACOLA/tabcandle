@@ -27,11 +27,17 @@ function formatCountdown(ms) {
 }
 
 /**
+function getI18n(key, fallback = '') {
+  return chrome.i18n?.getMessage?.(key) || fallback;
+}
+
+/**
  * Render countdown list from cached data (called every second by interval)
  */
 function renderCountdownTick() {
   if (!countdownCache.length) {
-    countdownListEl.innerHTML = '<div class="countdown-empty">未固定タブがありません</div>';
+    const emptyText = getI18n('emptyTabs', 'No unpinned tabs found');
+    countdownListEl.innerHTML = `<div class="countdown-empty">${emptyText}</div>`;
     return;
   }
 
@@ -73,11 +79,11 @@ function renderCountdownTick() {
     if (tab.pinned) {
       badge.classList.add('time-pinned');
       badge.textContent = '📌';
-      badge.title = '固定タブ（保護中）';
+      badge.title = getI18n('pinnedTooltip', 'Pinned tab (Protected)');
     } else if (tab.audible) {
       badge.classList.add('time-pinned');
       badge.textContent = '🔊';
-      badge.title = '音声再生中（保護中）';
+      badge.title = getI18n('audioTooltip', 'Audio playing (Protected)');
     } else {
       const remaining = Math.max(0, closeAt - now);
 
@@ -90,7 +96,7 @@ function renderCountdownTick() {
 
       if (remaining <= 0) {
         badge.classList.add('time-caution');
-        timeText.textContent = '閉じています...';
+        timeText.textContent = getI18n('closing', 'Closing...');
       } else if (remaining <= 180000) {
         // Less than 3 minutes
         badge.classList.add('time-caution');
@@ -220,7 +226,19 @@ function initVersion() {
   }
 }
 
+/**
+ * Localize elements with data-i18n attributes
+ */
+function initI18n() {
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    const msg = chrome.i18n?.getMessage?.(key);
+    if (msg) el.textContent = msg;
+  });
+}
+
 // Initial setup
+initI18n();
 initVersion();
 refreshCountdown();
 startCountdownTicker();

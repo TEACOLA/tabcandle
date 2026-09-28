@@ -1,0 +1,34 @@
+{
+  "appName": {
+    "message": "tabCandle",
+    "description": "The name of the extension."
+  },
+  "appDesc": {
+    "message": "Automatically closes unpinned tabs after 240 minutes to keep your browser fast and clutter-free.",
+    "description": "Short description of the extension."
+  },
+  "actionTitle": {
+    "message": "tabCandle — View remaining tab timers",
+    "description": "Toolbar action title tooltip."
+  },
+  "loading": {
+    "message": "Loading tabs...",
+    "description": "Text displayed while tab countdowns are loading."
+  },
+  "emptyTabs": {
+    "message": "No unpinned tabs found",
+    "description": "Text displayed when there are no unpinned tabs."
+  },
+  "closing": {
+    "message": "Closing...",
+    "description": "Badge text displayed when a tab's timer has expired."
+  },
+  "pinnedTooltip": {
+    "message": "Pinned tab (Protected)",
+    "description": "Tooltip for pinned protected tabs."
+  },
+  "audioTooltip": {
+    "message": "Audio playing (Protected)",
+    "description": "Tooltip for audio/media playing protected tabs."
+  }
+}

@@ -26,7 +26,10 @@
 - **Instant Tab Switching**: Click any tab in the list to jump straight to it.
 - 🎨 **Web-Safe 3-Color Design**: Tailored with an elegant Black, Gray, and Orange palette (strict 216-color Web-Safe standard). High contrast, dark mode native.
 
-### 3. 🔒 100% Private & Local
+### 3. 🌐 Internationalization (i18n)
+- **Automatic Language Switching**: Built-in native support for English (`en`) and Japanese (`ja`). The extension matches your browser's language automatically.
+
+### 4. 🔒 100% Private & Local
 - **Zero Data Collection**: No browsing history, no URLs, no personal data tracked or stored.
 - **Zero External Network Requests**: Operates 100% locally on your machine with no third-party SDKs, ads, or analytics.
 
@@ -53,6 +56,9 @@
 
 ```
 tabcandle/
+├── _locales/             # Internationalization dictionaries
+│   ├── en/messages.json  # English (default)
+│   └── ja/messages.json  # Japanese
 ├── manifest.json         # Manifest V3 extension configuration
 ├── background.js         # Service worker (tab timer tracking & alarms sweep)
 ├── icons/                # Extension icons (16px, 32px, 48px, 128px, SVG)
@@ -92,6 +98,7 @@ tabcandle/
 - **安心の2大保護ガード**: ピン留めされた固定タブ、および音声・動画再生中のタブは絶対に自動クローズされません。
 - **ミニマルUI**: 蝋燭アイコン（🕯）付きの残り時間リストから、クリック1つで目的のタブへジャンプ可能。
 - **3色パレット**: 「黒」「グレー」「オレンジ」のWebセーフカラーで統一されたシックなデザイン。
+- **多言語（i18n）対応**: 英語環境と日本語環境でUI表示が自動的に切り替わります。
 - **完全ローカル動作**: 外部通信なし・個人データ収集ゼロ。
 
 </details>
