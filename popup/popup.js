@@ -27,6 +27,8 @@ function formatCountdown(ms) {
 }
 
 /**
+ * Helper to fetch localized string from chrome.i18n
+ */
 function getI18n(key, fallback = '') {
   return chrome.i18n?.getMessage?.(key) || fallback;
 }
