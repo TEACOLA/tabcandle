@@ -1,7 +1,7 @@
 # Chrome Web Store Listing — tabCandle
 
-> Last Updated: 2026-09-19  
-> Target Version: 2.4.1
+> Last Updated: 2026-10-29  
+> Target Version: 2.4.2
 
 このドキュメントは、Chrome Web Store デベロッパーダッシュボードへの登録・審査申請に必要なすべての掲載情報、権限正当化理由（Permissions Justification）、プライバシー開示、およびパッケージング手順をまとめたリファレンスです。
 
@@ -193,13 +193,13 @@ If you have any questions or feedback regarding this privacy policy, please cont
 
 Chrome Web Store にアップロードする ZIP ファイルには、`.git` フォルダや隠しファイルを含めないようにします。
 
-以下のターミナルコマンドを実行することで、提出用パッケージ（`tabcandle-v2.4.1.zip`）を作成できます：
+以下のターミナルコマンドを実行することで、提出用パッケージ（`tabcandle-v2.4.2.zip`）を作成できます：
 
 ```bash
-zip -r tabcandle-v2.4.1.zip manifest.json background.js popup icons _locales README.md -x "*.DS_Store"
+zip -r tabcandle-v2.4.2.zip manifest.json background.js popup icons _locales README.md -x "*.DS_Store"
 ```
 
-生成された `tabcandle-v2.4.1.zip` をデベロッパーダッシュボードの **「パッケージ」** 画面にアップロードすれば完了です！
+生成された `tabcandle-v2.4.2.zip` をデベロッパーダッシュボードの **「パッケージ」** 画面にアップロードすれば完了です！
 
 ---
 
@@ -207,7 +207,8 @@ zip -r tabcandle-v2.4.1.zip manifest.json background.js popup icons _locales REA
 
 | バージョン | 日付 | 主な変更内容 | 状況 |
 | :--- | :--- | :--- | :---: |
-| **v2.4.1** | 2026-09-30 | ・ポップアップ初期化時のコメント構文エラーを修正し、タブ一覧の描画安定性を向上<br>・提出用パッケージの再ビルド | 申請準備完了 (Ready) |
+| **v2.4.2** | 2026-10-29 | ・拡張機能アプリアイコン（128px, 48px, 32px）のデザイン刷新<br>・公式ドキュメントおよび提出用パッケージの更新 | 申請準備完了 (Ready) |
+| **v2.4.1** | 2026-09-30 | ・ポップアップ初期化時のコメント構文エラーを修正し、タブ一覧の描画安定性を向上<br>・提出用パッケージの再ビルド | 完了 |
 | **v2.4.0** | 2026-09-29 | ・`chrome.i18n` による公式国際化（多言語対応）の実装<br>・英語（`en`・デフォルト）および日本語（`ja`）の多言語辞書（`_locales`）を追加<br>・ストア掲載・ポップアップUIのブラウザ言語に応じた自動言語切り替え<br>・ドキュメントおよび提出パッケージの更新 | 完了 |
 | **v2.3.1** | 2026-09-20 | ・ブランドテーマカラーを「黒」「グレー」「オレンジ」のWebセーフカラー（216色）に完全統一<br>・通常時および警告時のカウントダウンバッジ配色をキャンドルカラーへ最適化<br>・READMEおよびストア情報の更新 | 完了 |
 | **v2.3.0** | 2026-09-19 | ・赤色警告グループの廃止と純粋な240分自動終了への最適化<br>・`tabGroups` 権限の完全削除<br>・各タブカウントダウンバッジへの蝋燭アイコン（🕯）追加<br>・Webセーフカラー（216色）統一とUIの超軽量化（約14KB） | 完了 |
