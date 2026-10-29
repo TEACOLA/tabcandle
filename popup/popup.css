@@ -204,7 +204,42 @@ body {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
-  max-width: 175px;
+  min-width: 0;
+  max-width: 170px;
+}
+
+.countdown-actions {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  flex-shrink: 0;
+}
+
+.pin-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  padding: 0;
+  border-radius: var(--radius-sm);
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--border-subtle);
+  color: var(--text-secondary);
+  cursor: pointer;
+  outline: none;
+  transition: all var(--transition-fast);
+}
+
+.pin-btn:hover {
+  background: var(--accent-orange-bg);
+  border-color: var(--accent-orange);
+  color: var(--accent-orange);
+  transform: scale(1.08);
+}
+
+.pin-btn:active {
+  transform: scale(0.92);
 }
 
 .countdown-badge {
@@ -250,4 +285,10 @@ body {
   font-weight: 500;
   font-size: var(--font-sm);
   padding: 2.5px 6px;
+  transition: all var(--transition-fast);
+}
+
+.countdown-badge.time-pinned:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.35);
 }

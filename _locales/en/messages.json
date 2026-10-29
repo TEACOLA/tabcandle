@@ -30,5 +30,13 @@
   "audioTooltip": {
     "message": "Audio playing (Protected)",
     "description": "Tooltip for audio/media playing protected tabs."
+  },
+  "pinTabAction": {
+    "message": "Pin tab (Protect)",
+    "description": "Tooltip for pinning and protecting a tab."
+  },
+  "unpinTabAction": {
+    "message": "Unpin tab",
+    "description": "Tooltip for unpinning a tab."
   }
 }

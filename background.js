@@ -94,6 +94,14 @@ async function recheckAllTabAlarms() {
     for (const tab of tabs) {
       if (tab.pinned) {
         chrome.alarms.clear(`close_${tab.id}`);
+        const tabKey = String(tab.id);
+        if (timestamps[tabKey] || timestamps[tab.id] || closeTimes[tabKey] || closeTimes[tab.id]) {
+          delete timestamps[tabKey];
+          delete timestamps[tab.id];
+          delete closeTimes[tabKey];
+          delete closeTimes[tab.id];
+          storageChanged = true;
+        }
         continue;
       }
 
@@ -272,21 +280,35 @@ chrome.tabs.onRemoved.addListener(async (tabId) => {
 // Tab Updated: Check pinned state changes
 chrome.tabs.onUpdated.addListener(async (tabId, changeInfo, tab) => {
   if (changeInfo.pinned !== undefined) {
+    const tabKey = String(tabId);
+    const {
+      tabTimestamps = {},
+      tabCloseTimes = {},
+      autoCloseMinutes = DEFAULT_AUTO_CLOSE_MINUTES
+    } = await chrome.storage.local.get([
+      'tabTimestamps',
+      'tabCloseTimes',
+      'autoCloseMinutes'
+    ]);
+
     if (changeInfo.pinned) {
+      // Tab is pinned: clear alarm and wipe stored countdown timestamps
       chrome.alarms.clear(`close_${tabId}`);
+      delete tabTimestamps[tabId];
+      delete tabTimestamps[tabKey];
+      delete tabCloseTimes[tabId];
+      delete tabCloseTimes[tabKey];
+      await chrome.storage.local.set({ tabTimestamps, tabCloseTimes });
     } else {
-      const { tabCloseTimes = {}, autoCloseMinutes = DEFAULT_AUTO_CLOSE_MINUTES } = await chrome.storage.local.get([
-        'tabCloseTimes',
-        'autoCloseMinutes'
-      ]);
+      // Tab is unpinned: reset countdown completely from now
       const now = Date.now();
-      const tabKey = String(tabId);
-      let closeAt = tabCloseTimes[tabKey] || tabCloseTimes[tabId];
-      if (!closeAt || closeAt <= now) {
-        closeAt = now + ((Number(autoCloseMinutes) || DEFAULT_AUTO_CLOSE_MINUTES) * 60 * 1000);
-        tabCloseTimes[tabKey] = closeAt;
-        await chrome.storage.local.set({ tabCloseTimes });
-      }
+      const minutes = Number(autoCloseMinutes) || DEFAULT_AUTO_CLOSE_MINUTES;
+      const closeAt = now + (minutes * 60 * 1000);
+      tabTimestamps[tabKey] = now;
+      tabCloseTimes[tabKey] = closeAt;
+      delete tabTimestamps[tabId];
+      delete tabCloseTimes[tabId];
+      await chrome.storage.local.set({ tabTimestamps, tabCloseTimes });
       scheduleTabCloseAlarm(tabId, closeAt);
     }
   }

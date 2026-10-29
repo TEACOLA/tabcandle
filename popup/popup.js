@@ -44,6 +44,36 @@ function renderCountdownTick() {
   }
 
   const now = Date.now();
+  const existingItems = countdownListEl.querySelectorAll('.countdown-item');
+  const cacheIds = countdownCache.map(entry => entry.tab.id).join(',');
+  const domIds = Array.from(existingItems).map(el => el.dataset.tabId).join(',');
+
+  // If DOM structure matches current cache, update timers in-place without rebuilding DOM
+  if (domIds && domIds === cacheIds) {
+    existingItems.forEach((item, index) => {
+      const entry = countdownCache[index];
+      const { tab, closeAt } = entry;
+      if (tab.pinned || tab.audible) return;
+
+      const timeTextEl = item.querySelector('.badge-time-text');
+      const badge = item.querySelector('.countdown-badge');
+      if (!timeTextEl || !badge) return;
+
+      const remaining = Math.max(0, closeAt - now);
+      if (remaining <= 0) {
+        badge.className = 'countdown-badge time-caution';
+        timeTextEl.textContent = getI18n('closing', 'Closing...');
+      } else if (remaining <= 180000) {
+        badge.className = 'countdown-badge time-caution';
+        timeTextEl.textContent = formatCountdown(remaining);
+      } else {
+        badge.className = 'countdown-badge time-safe';
+        timeTextEl.textContent = formatCountdown(remaining);
+      }
+    });
+    return;
+  }
+
   const fragment = document.createDocumentFragment();
 
   for (const entry of countdownCache) {
@@ -51,6 +81,7 @@ function renderCountdownTick() {
 
     const item = document.createElement('div');
     item.className = 'countdown-item';
+    item.dataset.tabId = String(tab.id);
 
     // Tab info area
     const infoDiv = document.createElement('div');
@@ -74,18 +105,52 @@ function renderCountdownTick() {
     titleSpan.title = tab.title || '';
     infoDiv.appendChild(titleSpan);
 
-    // Badge: remaining time
+    // Actions area
+    const actionsDiv = document.createElement('div');
+    actionsDiv.className = 'countdown-actions';
+
+    // Badge: remaining time or protected state
     const badge = document.createElement('span');
     badge.className = 'countdown-badge';
 
     if (tab.pinned) {
       badge.classList.add('time-pinned');
       badge.textContent = '📌';
-      badge.title = getI18n('pinnedTooltip', 'Pinned tab (Protected)');
+      badge.title = getI18n('unpinTabAction', 'Unpin tab');
+      badge.style.cursor = 'pointer';
+      badge.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        try {
+          const currentTime = Date.now();
+          const tabKey = String(tab.id);
+          const {
+            tabTimestamps = {},
+            tabCloseTimes = {},
+            autoCloseMinutes = DEFAULT_AUTO_CLOSE_MINUTES
+          } = await chrome.storage.local.get([
+            'tabTimestamps',
+            'tabCloseTimes',
+            'autoCloseMinutes'
+          ]);
+          const minutes = Number(autoCloseMinutes) || DEFAULT_AUTO_CLOSE_MINUTES;
+          const closeAt = currentTime + (minutes * 60 * 1000);
+          tabTimestamps[tabKey] = currentTime;
+          tabCloseTimes[tabKey] = closeAt;
+          delete tabTimestamps[tab.id];
+          delete tabCloseTimes[tab.id];
+          await chrome.storage.local.set({ tabTimestamps, tabCloseTimes });
+
+          await chrome.tabs.update(tab.id, { pinned: false });
+          tab.pinned = false;
+          await refreshCountdown();
+        } catch (err) {}
+      });
+      actionsDiv.appendChild(badge);
     } else if (tab.audible) {
       badge.classList.add('time-pinned');
       badge.textContent = '🔊';
       badge.title = getI18n('audioTooltip', 'Audio playing (Protected)');
+      actionsDiv.appendChild(badge);
     } else {
       const remaining = Math.max(0, closeAt - now);
 
@@ -95,6 +160,7 @@ function renderCountdownTick() {
       candleImg.alt = '🕯';
 
       const timeText = document.createElement('span');
+      timeText.className = 'badge-time-text';
 
       if (remaining <= 0) {
         badge.classList.add('time-caution');
@@ -110,6 +176,39 @@ function renderCountdownTick() {
 
       badge.appendChild(candleImg);
       badge.appendChild(timeText);
+      actionsDiv.appendChild(badge);
+
+      // Pin button for countdown tab
+      const pinBtn = document.createElement('button');
+      pinBtn.type = 'button';
+      pinBtn.className = 'pin-btn';
+      pinBtn.title = getI18n('pinTabAction', 'Pin tab (Protect)');
+      pinBtn.setAttribute('aria-label', pinBtn.title);
+      pinBtn.innerHTML = '<svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="17" x2="12" y2="22"/><path d="M5 17h14v-1.76a2 2 0 0 0-1.11-1.79l-1.78-.9A2 2 0 0 1 15 10.76V6h1a2 2 0 0 0 0-4H8a2 2 0 0 0 0 4h1v4.76a2 2 0 0 1-1.11 1.79l-1.78.9A2 2 0 0 0 5 15.24Z"/></svg>';
+
+      pinBtn.addEventListener('click', async (e) => {
+        e.stopPropagation();
+        try {
+          const tabKey = String(tab.id);
+          const { tabTimestamps = {}, tabCloseTimes = {} } = await chrome.storage.local.get([
+            'tabTimestamps',
+            'tabCloseTimes'
+          ]);
+          delete tabTimestamps[tab.id];
+          delete tabTimestamps[tabKey];
+          delete tabCloseTimes[tab.id];
+          delete tabCloseTimes[tabKey];
+          await chrome.storage.local.set({ tabTimestamps, tabCloseTimes });
+
+          await chrome.tabs.update(tab.id, { pinned: true });
+          tab.pinned = true;
+          await refreshCountdown();
+        } catch (err) {
+          console.error('Failed to pin tab:', err);
+        }
+      });
+
+      actionsDiv.appendChild(pinBtn);
     }
 
     item.addEventListener('click', async () => {
@@ -120,7 +219,7 @@ function renderCountdownTick() {
     });
 
     item.appendChild(infoDiv);
-    item.appendChild(badge);
+    item.appendChild(actionsDiv);
     fragment.appendChild(item);
   }
 
@@ -157,6 +256,23 @@ async function refreshCountdown() {
 
     countdownCache = tabs.map(tab => {
       const tabKey = String(tab.id);
+
+      // Pinned tabs: clear stored countdown data so they reset to full time when unpinned
+      if (tab.pinned) {
+        if (tabTimestamps[tabKey] || tabTimestamps[tab.id] || tabCloseTimes[tabKey] || tabCloseTimes[tab.id]) {
+          delete tabTimestamps[tabKey];
+          delete tabTimestamps[tab.id];
+          delete tabCloseTimes[tabKey];
+          delete tabCloseTimes[tab.id];
+          missingData = true;
+        }
+        return {
+          tab,
+          startMs: now,
+          closeAt: now
+        };
+      }
+
       let startMs = tabTimestamps[tabKey] || tabTimestamps[tab.id];
       if (!startMs) {
         startMs = now;
@@ -165,8 +281,8 @@ async function refreshCountdown() {
       }
 
       let closeAt = tabCloseTimes[tabKey] || tabCloseTimes[tab.id];
-      if (!closeAt) {
-        closeAt = startMs + (DEFAULT_AUTO_CLOSE_MINUTES * 60 * 1000);
+      if (!closeAt || closeAt <= now) {
+        closeAt = startMs + ((Number(settings.autoCloseMinutes) || DEFAULT_AUTO_CLOSE_MINUTES) * 60 * 1000);
         tabCloseTimes[tabKey] = closeAt;
         missingData = true;
       }

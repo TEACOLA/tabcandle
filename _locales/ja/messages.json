@@ -30,5 +30,13 @@
   "audioTooltip": {
     "message": "音声再生中（保護中）",
     "description": "音声・動画再生中タブのツールチップテキストです。"
+  },
+  "pinTabAction": {
+    "message": "タブを固定して保護",
+    "description": "タブを固定するためのボタンのツールチップです。"
+  },
+  "unpinTabAction": {
+    "message": "タブの固定を解除",
+    "description": "タブの固定を解除するためのボタンのツールチップです。"
   }
 }
